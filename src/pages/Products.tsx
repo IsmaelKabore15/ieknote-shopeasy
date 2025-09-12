@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductCard from "@/components/ui/product-card";
+import WhatsAppButton, { whatsappMessages } from "@/components/ui/whatsapp-button";
 import { Search, Filter, GraduationCap, BookOpen, Pen } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import schoolKits from "@/assets/school-kits.jpg";
@@ -25,7 +26,10 @@ const Products = () => {
       description: "Cahiers 200p (6 unités), stylos Bic bleu/noir (4 unités), crayons HB (3 unités), gommes (2 unités), règles 30cm, ensemble géométrique complet, couvertures plastiques",
       image: schoolKits,
       badge: "Populaire",
-      onOrder: () => handleOrder("Kit Scolaire 6ème/5ème")
+      onOrder: () => {
+        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit6e5e)}`;
+        window.open(whatsappUrl, "_blank");
+      }
     },
     {
       title: "Kit Scolaire 3ème/4ème", 
@@ -34,7 +38,10 @@ const Products = () => {
       description: "Cahiers 300p (8 unités), fournitures complètes, calculatrice standard, compas de qualité, équerres 45° et 30°, stylos de couleur, surligneurs",
       image: schoolKits,
       badge: "Recommandé",
-      onOrder: () => handleOrder("Kit Scolaire 3ème/4ème")
+      onOrder: () => {
+        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit3e4e)}`;
+        window.open(whatsappUrl, "_blank");
+      }
     },
     {
       title: "Kit Scolaire 2nde/Tle",
@@ -43,7 +50,10 @@ const Products = () => {
       description: "Cahiers de recherche (4 unités), cahiers TP sciences (6 unités), fournitures premium, calculatrice scientifique, matériel de dessin technique complet",
       image: schoolKits,
       badge: "Complet",
-      onOrder: () => handleOrder("Kit Scolaire 2nde/Tle")
+      onOrder: () => {
+        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit2ndeTle)}`;
+        window.open(whatsappUrl, "_blank");
+      }
     }
   ];
 
@@ -228,29 +238,31 @@ const Products = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="container mx-auto px-4">
-          <Card className="bg-white/10 border-white/20 text-white">
-            <CardHeader>
-              <CardTitle className="text-center text-2xl">
-                Besoin d'aide pour choisir ?
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-center space-y-4">
-              <p className="text-white/90">
-                Notre équipe est là pour vous conseiller et préparer un kit personnalisé selon vos besoins.
-              </p>
-              <Button 
-                size="lg" 
-                className="bg-success hover:bg-success/90 text-success-foreground"
-                asChild
+          <div className="text-center bg-gradient-to-r from-school-orange to-school-yellow p-8 rounded-lg text-white">
+            <h3 className="text-2xl font-bold mb-4">Besoin d'aide pour choisir ?</h3>
+            <p className="text-lg mb-6 opacity-90">Notre équipe est là pour vous conseiller !</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <WhatsAppButton 
+                variant="default"
+                message={whatsappMessages.general}
+                className="bg-white text-school-blue hover:bg-gray-100"
               >
-                <a href="https://wa.me/2250757608818" target="_blank" rel="noopener noreferrer">
-                  Contactez-nous via WhatsApp
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+                💬 Discuter avec nous
+              </WhatsAppButton>
+              <WhatsAppButton 
+                variant="default"
+                message={whatsappMessages.fournitures}
+                className="bg-white/20 text-white hover:bg-white/30 border border-white/20"
+              >
+                📦 Fournitures à l'unité
+              </WhatsAppButton>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Boutons flottants */}
+      <WhatsAppButton variant="floating" message={whatsappMessages.general} />
     </div>
   );
 };

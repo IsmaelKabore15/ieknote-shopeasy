@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ProductCard from "@/components/ui/product-card";
+import WhatsAppButton, { PhoneButton, whatsappMessages } from "@/components/ui/whatsapp-button";
 import { ArrowRight, CheckCircle, Star, Users, Package, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-school-supplies.jpg";
@@ -20,7 +21,10 @@ const Home = () => {
       description: "Cahiers 200p, stylos Bic, crayons, gommes, règles, ensemble géométrique, couvertures plastiques",
       image: schoolKits,
       badge: "Populaire",
-      onOrder: () => handleOrder("Kit Scolaire 6ème/5ème")
+      onOrder: () => {
+        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit6e5e)}`;
+        window.open(whatsappUrl, "_blank");
+      }
     },
     {
       title: "Kit Scolaire 3ème/4ème", 
@@ -29,7 +33,10 @@ const Home = () => {
       description: "Cahiers 300p, fournitures complètes, calculatrice, compas, équerres, stylos de qualité",
       image: schoolKits,
       badge: "Recommandé",
-      onOrder: () => handleOrder("Kit Scolaire 3ème/4ème")
+      onOrder: () => {
+        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit3e4e)}`;
+        window.open(whatsappUrl, "_blank");
+      }
     },
     {
       title: "Kit Scolaire 2nde/Tle",
@@ -38,7 +45,10 @@ const Home = () => {
       description: "Cahiers de recherche, cahiers TP, fournitures premium, calculatrice scientifique",
       image: schoolKits,
       badge: "Complet",
-      onOrder: () => handleOrder("Kit Scolaire 2nde/Tle")
+      onOrder: () => {
+        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit2ndeTle)}`;
+        window.open(whatsappUrl, "_blank");
+      }
     }
   ];
 
@@ -89,26 +99,13 @@ const Home = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
-                  className="bg-accent hover:bg-accent-hover text-accent-foreground"
-                  asChild
+                <WhatsAppButton 
+                  variant="hero"
+                  message={whatsappMessages.general}
                 >
-                  <Link to="/produits">
-                    Voir nos kits
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-primary"
-                  asChild
-                >
-                  <a href="https://wa.me/2250757608818" target="_blank" rel="noopener noreferrer">
-                    Commander maintenant
-                  </a>
-                </Button>
+                  🛒 Commander maintenant
+                </WhatsAppButton>
+                <PhoneButton variant="hero" />
               </div>
               
               <div className="flex items-center space-x-4 text-white/80">
@@ -211,17 +208,29 @@ const Home = () => {
           <p className="text-xl mb-8 opacity-90">
             Contactez-nous via WhatsApp pour un devis personnalisé et une livraison rapide !
           </p>
-          <Button 
-            size="lg" 
-            className="bg-white text-success hover:bg-white/90"
-            asChild
-          >
-            <a href="https://wa.me/2250757608818" target="_blank" rel="noopener noreferrer">
-              Commander maintenant
-            </a>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <WhatsAppButton 
+              variant="default"
+              message={whatsappMessages.general}
+              className="bg-white text-success hover:bg-white/90 text-lg px-8 py-3"
+            >
+              🛒 Commander sur WhatsApp
+            </WhatsAppButton>
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => window.open("tel:+2250757608818", "_self")}
+              className="border-white text-white hover:bg-white hover:text-success text-lg px-8 py-3"
+            >
+              📞 Appeler directement
+            </Button>
+          </div>
         </div>
       </section>
+
+      {/* Boutons flottants */}
+      <WhatsAppButton variant="floating" message={whatsappMessages.general} />
+      <PhoneButton variant="floating" />
     </div>
   );
 };

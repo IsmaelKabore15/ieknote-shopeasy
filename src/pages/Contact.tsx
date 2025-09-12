@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import WhatsAppButton, { PhoneButton, whatsappMessages } from "@/components/ui/whatsapp-button";
 import { 
   Phone, 
   MessageCircle, 
@@ -95,14 +96,39 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">Réponse rapide assurée</p>
-                <Button 
-                  className="w-full bg-success hover:bg-success/90"
-                  asChild
-                >
-                  <a href="https://wa.me/2250757608818" target="_blank" rel="noopener noreferrer">
-                    Ouvrir WhatsApp
-                  </a>
-                </Button>
+                <div className="space-y-4">
+                  <WhatsAppButton 
+                    variant="default"
+                    message={whatsappMessages.contact}
+                    className="w-full"
+                  >
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    WhatsApp - 0757608818
+                  </WhatsAppButton>
+                  
+                  <WhatsAppButton 
+                    variant="default"
+                    message={whatsappMessages.contact}
+                    phone="2250555782944"
+                    className="w-full bg-school-blue hover:bg-school-blue/90"
+                  >
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    WhatsApp - 0555782944
+                  </WhatsAppButton>
+
+                  <div className="flex gap-3">
+                    <PhoneButton 
+                      variant="default"
+                      phone="0757608818"
+                      className="flex-1"
+                    />
+                    <PhoneButton 
+                      variant="default"
+                      phone="0555782944"
+                      className="flex-1"
+                    />
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
@@ -369,6 +395,38 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center bg-gradient-to-r from-school-blue to-school-green p-8 rounded-lg text-white">
+            <h3 className="text-2xl font-bold mb-4">Commandez dès maintenant !</h3>
+            <p className="text-lg mb-6 opacity-90">
+              Cliquez ci-dessous pour passer votre commande directement via WhatsApp
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <WhatsAppButton 
+                variant="default"
+                message={whatsappMessages.general}
+                className="bg-white text-school-blue hover:bg-gray-100 text-lg px-8 py-3"
+              >
+                🛒 Passer commande
+              </WhatsAppButton>
+              <WhatsAppButton 
+                variant="default"
+                message={whatsappMessages.livraison}
+                className="bg-white/20 text-white hover:bg-white/30 border border-white/20 text-lg px-8 py-3"
+              >
+                🚚 Info livraison
+              </WhatsAppButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Boutons flottants */}
+      <WhatsAppButton variant="floating" message={whatsappMessages.contact} />
+      <PhoneButton variant="floating" />
     </div>
   );
 };
