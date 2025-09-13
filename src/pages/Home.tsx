@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ProductCard from "@/components/ui/product-card";
 import WhatsAppButton, { PhoneButton, whatsappMessages } from "@/components/ui/whatsapp-button";
+import ChatBot from "@/components/ui/chat-bot";
 import { ArrowRight, CheckCircle, Star, Users, Package, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-school-supplies.jpg";
@@ -231,6 +232,7 @@ const Home = () => {
       {/* Boutons flottants */}
       <WhatsAppButton variant="floating" message={whatsappMessages.general} />
       <PhoneButton variant="floating" />
+      <ChatBot />
     </div>
   );
 };
