@@ -16,23 +16,23 @@ const About = () => {
   const values = [
     {
       icon: Award,
-      title: "Qualité",
-      description: "Nous sélectionnons uniquement des fournitures de qualité supérieure pour garantir votre satisfaction."
+      title: "Qualité garantie",
+      description: "Des produits sélectionnés avec soin : cahiers résistants, stylos fiables, livres neufs et matériel durable."
+    },
+    {
+      icon: Clock,
+      title: "Rapidité",
+      description: "Commandes traitées rapidement et livrées en toute sécurité. Gain de temps assuré !"
     },
     {
       icon: Users,
-      title: "Proximité",
-      description: "Une équipe à votre écoute pour vous conseiller et vous accompagner dans vos achats."
-    },
-    {
-      icon: Heart,
-      title: "Passion",
-      description: "Nous croyons en l'éducation et mettons notre passion au service de votre réussite."
+      title: "Service client disponible",
+      description: "Une équipe à votre écoute au 0757608818 pour vous conseiller et répondre à vos questions."
     },
     {
       icon: Target,
-      title: "Accessibilité",
-      description: "Des prix justes et accessibles pour que chaque étudiant puisse avoir les meilleures fournitures."
+      title: "Prix abordables",
+      description: "Des tarifs justes et compétitifs. Réductions spéciales pour les commandes groupées et écoles."
     }
   ];
 
@@ -53,11 +53,11 @@ const About = () => {
               🏪 Notre histoire
             </Badge>
             <h1 className="text-4xl md:text-5xl font-bold">
-              À propos de Librairie I.E.K
+              À propos de Librairie IEK
             </h1>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Votre partenaire de confiance pour des fournitures scolaires de qualité 
-              depuis plusieurs années en Côte d'Ivoire.
+              Votre librairie de référence pour fournitures scolaires et universitaires. 
+              Cahiers, stylos, livres, sacs... Tout pour la réussite scolaire !
             </p>
           </div>
         </div>
@@ -73,12 +73,13 @@ const About = () => {
                   🎯 Notre mission
                 </Badge>
                 <h2 className="text-3xl font-bold text-foreground">
-                  Accompagner la réussite de chaque étudiant
+                  Notre mission : rendre accessibles les fournitures scolaires
                 </h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Chez Librairie I.E.K, nous croyons que chaque étudiant mérite d'avoir accès 
-                  aux meilleures fournitures scolaires pour réussir ses études. C'est pourquoi 
-                  nous nous engageons à proposer des produits de qualité à des prix accessibles.
+                  Chez Librairie IEK, nous croyons que chaque élève et étudiant mérite d'avoir 
+                  accès à des fournitures de qualité sans se ruiner. Cahiers, stylos, livres, 
+                  sacs, calculatrices... Nous proposons tout ce dont vous avez besoin pour réussir 
+                  votre année scolaire, à prix abordables.
                 </p>
               </div>
               
@@ -131,11 +132,14 @@ const About = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
+            <Badge className="mb-4 bg-accent/20 text-accent font-semibold">
+              📊 Nos performances
+            </Badge>
             <h2 className="text-3xl font-bold text-foreground mb-4">
-              Nos chiffres parlent pour nous
+              Des chiffres qui parlent pour nous
             </h2>
-            <p className="text-muted-foreground">
-              La confiance de nos clients est notre plus belle récompense
+            <p className="text-muted-foreground text-lg">
+              La satisfaction de nos clients est notre priorité absolue
             </p>
           </div>
           
@@ -158,15 +162,15 @@ const About = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-accent/20 text-accent">
-              💎 Nos valeurs
+            <Badge className="mb-4 bg-accent/20 text-accent font-semibold">
+              💎 Nos engagements
             </Badge>
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Ce qui nous guide au quotidien
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Pourquoi choisir Librairie IEK ?
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Nos valeurs fondamentales guident chacune de nos actions et nous permettent 
-              de vous offrir le meilleur service possible.
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              Rapidité, qualité, produits variés et service client disponible. 
+              Voici ce qui fait de nous votre partenaire de confiance.
             </p>
           </div>
           
@@ -195,11 +199,11 @@ const About = () => {
       <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Nous sommes là pour vous accompagner
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Contactez-nous facilement
             </h2>
-            <p className="text-xl opacity-90">
-              Une question ? Un conseil ? N'hésitez pas à nous contacter !
+            <p className="text-xl opacity-90 max-w-2xl mx-auto">
+              Une question sur nos produits ? Besoin d'un devis ? Notre équipe est disponible pour vous aider !
             </p>
           </div>
           
@@ -212,9 +216,9 @@ const About = () => {
                 <CardTitle>Contactez-nous</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <p className="font-medium">07 57 60 88 18</p>
+                <p className="font-medium text-lg">0757608818</p>
                 <p className="font-medium">05 55 78 29 44</p>
-                <p className="text-sm opacity-80">WhatsApp & Appels</p>
+                <p className="text-sm opacity-80">WhatsApp & Appels disponibles</p>
               </CardContent>
             </Card>
             
@@ -226,9 +230,9 @@ const About = () => {
                 <CardTitle>Notre localisation</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <p className="font-medium">Abidjan</p>
-                <p className="font-medium">Côte d'Ivoire</p>
-                <p className="text-sm opacity-80">Livraison dans toute la ville</p>
+                <p className="font-medium">Kakoukro, Carrefour Marché</p>
+                <p className="font-medium">Adiaké, quartier Gnanmiendoussou</p>
+                <p className="text-sm opacity-80">Livraison possible selon zone</p>
               </CardContent>
             </Card>
             
@@ -240,8 +244,8 @@ const About = () => {
                 <CardTitle>Horaires</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <p className="font-medium">Lun - Sam</p>
-                <p className="font-medium">8h00 - 18h00</p>
+                <p className="font-medium">Lun - Sam : 8h00 - 19h00</p>
+                <p className="font-medium">Dimanche : Fermé</p>
                 <p className="text-sm opacity-80">Service client disponible</p>
               </CardContent>
             </Card>
@@ -250,11 +254,11 @@ const About = () => {
           <div className="text-center mt-12">
             <Button 
               size="lg" 
-              className="bg-success hover:bg-success/90 text-success-foreground"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-yellow text-lg px-8 py-3"
               asChild
             >
               <a href="https://wa.me/2250757608818" target="_blank" rel="noopener noreferrer">
-                Discutons de vos besoins
+                💬 Discutons sur WhatsApp
               </a>
             </Button>
           </div>

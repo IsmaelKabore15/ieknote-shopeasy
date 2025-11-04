@@ -57,22 +57,22 @@ const Home = () => {
     {
       icon: CheckCircle,
       title: "Qualité garantie",
-      description: "Fournitures sélectionnées pour leur durabilité"
+      description: "Des produits sélectionnés avec soin pour leur durabilité et leur fiabilité"
     },
     {
       icon: Package,
-      title: "Kits complets",
-      description: "Tout ce qu'il faut pour une année scolaire"
+      title: "Produits variés",
+      description: "Cahiers, stylos, livres, sacs, calculatrices et tout pour l'école"
     },
     {
       icon: Clock,
       title: "Livraison rapide",
-      description: "Commande traitée et livrée rapidement"
+      description: "Commandes traitées rapidement et livrées en toute sécurité"
     },
     {
       icon: Users,
-      title: "Service client",
-      description: "Accompagnement personnalisé via WhatsApp"
+      title: "Service client disponible",
+      description: "Contactez-nous au 0757608818 pour toute question ou conseil"
     }
   ];
 
@@ -85,17 +85,15 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white space-y-8">
               <div className="space-y-4">
-                <Badge className="bg-accent text-accent-foreground">
-                  🎒 Rentrée 2024-2025
+                <Badge className="bg-accent text-accent-foreground font-semibold">
+                  ✨ Nouvelle Collection 2024-2025
                 </Badge>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                  Préparez votre{" "}
-                  <span className="text-accent">rentrée</span>{" "}
-                  avec nous
+                  Tout pour la réussite scolaire,{" "}
+                  <span className="text-accent">en un clic !</span>
                 </h1>
                 <p className="text-xl text-white/90 max-w-lg">
-                  Découvrez nos kits scolaires complets et nos fournitures de qualité 
-                  à prix abordables. Tout pour réussir votre année scolaire !
+                  Cahiers, stylos, sacs, livres et bien plus ! Achetez facilement vos fournitures scolaires en ligne avec Librairie IEK. Qualité garantie, prix abordables, livraison rapide.
                 </p>
               </div>
               
@@ -133,12 +131,15 @@ const Home = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Pourquoi choisir Librairie I.E.K ?
+            <Badge className="mb-4 bg-accent/20 text-accent font-semibold">
+              💎 Pourquoi nous choisir
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Librairie IEK, votre partenaire de confiance
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Depuis des années, nous accompagnons les étudiants avec des fournitures 
-              de qualité et un service personnalisé.
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              Rapidité, qualité, produits variés et service client disponible au 0757608818. 
+              Nous rendons vos achats scolaires simples, rapides et fiables.
             </p>
           </div>
           
@@ -167,15 +168,15 @@ const Home = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge className="mb-4 bg-secondary/20 text-secondary">
-              🎯 Nos bestsellers
+            <Badge className="mb-4 bg-accent/20 text-accent font-semibold">
+              🎯 Nos Kits Bestsellers
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Kits Scolaires 2024-2025
+              Kits Scolaires Complets 2024-2025
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Des kits complets adaptés à chaque niveau, avec tout le nécessaire 
-              pour une année scolaire réussie.
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              Des kits adaptés à chaque niveau scolaire. Cahiers, stylos, règles, calculatrices... 
+              Tout ce qu'il faut pour une année réussie, à prix réduit !
             </p>
           </div>
           
@@ -201,29 +202,30 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-success to-secondary text-white">
+      <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Prêt à commander votre kit scolaire ?
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Commandez vos fournitures scolaires maintenant !
           </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Contactez-nous via WhatsApp pour un devis personnalisé et une livraison rapide !
+          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+            Élèves, étudiants, parents et enseignants : achetez facilement en ligne. 
+            Paiement sécurisé • Livraison rapide • Service client au 0757608818
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <WhatsAppButton 
               variant="default"
               message={whatsappMessages.general}
-              className="bg-white text-success hover:bg-white/90 text-lg px-8 py-3"
+              className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg px-8 py-3 font-semibold shadow-yellow"
             >
-              🛒 Commander sur WhatsApp
+              💬 Commander via WhatsApp
             </WhatsAppButton>
             <Button 
               variant="outline" 
               size="lg"
               onClick={() => window.open("tel:+2250757608818", "_self")}
-              className="border-white text-white hover:bg-white hover:text-success text-lg px-8 py-3"
+              className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3 font-semibold"
             >
-              📞 Appeler directement
+              📞 Appeler le 0757608818
             </Button>
           </div>
         </div>
