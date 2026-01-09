@@ -32,33 +32,34 @@ const ChatBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  // Invitation automatique après 3 secondes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!hasInteracted && !isOpen) {
-        setIsOpen(true);
-        addBotMessage(
-          "👋 Bienvenue chez Librairie I.E.K ! Je suis là pour vous aider avec vos questions sur nos fournitures scolaires. Comment puis-je vous renseigner ?",
-          [
-            {
-              label: "Voir les kits scolaires",
-              action: () => addBotMessage(getKitsInfo())
-            },
-            {
-              label: "Connaître les prix",
-              action: () => addBotMessage(getPricesInfo())
-            },
-            {
-              label: "Comment commander",
-              action: () => addBotMessage(getOrderInfo())
-            }
-          ]
-        );
-      }
-    }, 3000);
+  // Message de bienvenue affiché uniquement quand l'utilisateur ouvre le chat
+  const showWelcomeMessage = () => {
+    if (messages.length === 0) {
+      addBotMessage(
+        "👋 Bienvenue chez Librairie I.E.K ! Je suis là pour vous aider avec vos questions sur nos fournitures scolaires. Comment puis-je vous renseigner ?",
+        [
+          {
+            label: "Voir les kits scolaires",
+            action: () => addBotMessage(getKitsInfo())
+          },
+          {
+            label: "Connaître les prix",
+            action: () => addBotMessage(getPricesInfo())
+          },
+          {
+            label: "Comment commander",
+            action: () => addBotMessage(getOrderInfo())
+          }
+        ]
+      );
+    }
+  };
 
-    return () => clearTimeout(timer);
-  }, [hasInteracted, isOpen]);
+  const handleOpen = () => {
+    setIsOpen(true);
+    setHasInteracted(true);
+    showWelcomeMessage();
+  };
 
   const addBotMessage = (text: string, actions?: Array<{label: string, action: () => void}>) => {
     const newMessage: Message = {
@@ -241,16 +242,17 @@ Voici les sujets sur lesquels je peux vous renseigner :
 
   return (
     <>
-      {/* Bouton flottant */}
+      {/* Bouton flottant - nouvelle couleur violet/indigo */}
       {!isOpen && (
         <Button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-6 z-50 bg-school-primary hover:bg-school-primary/90 text-white shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 rounded-full w-16 h-16 p-0"
+          onClick={handleOpen}
+          className="fixed bottom-24 right-6 z-50 bg-gradient-to-br from-violet-500 to-indigo-600 hover:from-violet-600 hover:to-indigo-700 text-white shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 rounded-full w-16 h-16 p-0 ring-4 ring-violet-200/50"
           size="icon"
+          aria-label="Ouvrir le chat"
         >
           <MessageCircle className="h-8 w-8" />
-          <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-            <Bot className="h-3 w-3 text-white" />
+          <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md">
+            <Bot className="h-3 w-3 text-violet-600" />
           </div>
         </Button>
       )}
