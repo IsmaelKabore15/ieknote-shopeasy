@@ -66,10 +66,10 @@ export const PhoneButton = ({
   };
 
   const variants = {
-    default: "bg-school-blue hover:bg-school-blue/90 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300",
-    floating: "fixed bottom-6 left-6 z-50 bg-school-blue hover:bg-school-blue/90 text-white shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 rounded-full w-16 h-16 p-0",
-    compact: "bg-school-blue hover:bg-school-blue/90 text-white shadow-md hover:shadow-lg transition-all duration-200",
-    hero: "bg-gradient-to-r from-school-blue to-school-blue/80 hover:from-school-blue/90 hover:to-school-blue text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg px-8 py-4"
+    default: "bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300",
+    floating: "fixed bottom-6 left-6 z-50 bg-gradient-to-br from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 rounded-full w-16 h-16 p-0 ring-4 ring-orange-200/50",
+    compact: "bg-orange-500 hover:bg-orange-600 text-white shadow-md hover:shadow-lg transition-all duration-200",
+    hero: "bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg px-8 py-4"
   };
 
   if (variant === "floating") {
