@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,27 +18,66 @@ import {
   CheckCircle
 } from "lucide-react";
 
+// Validation schema with zod
+const contactFormSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Le nom doit contenir au moins 2 caractères")
+    .max(100, "Le nom ne peut pas dépasser 100 caractères"),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[+]?[0-9\s-]{8,20}$/, "Numéro de téléphone invalide (8-20 chiffres)"),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Le message doit contenir au moins 10 caractères")
+    .max(1000, "Le message ne peut pas dépasser 1000 caractères"),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     message: ""
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.phone || !formData.message) {
+    // Validate with zod
+    const result = contactFormSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof ContactFormData;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      
       toast({
-        title: "Erreur",
-        description: "Veuillez remplir tous les champs obligatoires.",
+        title: "Erreur de validation",
+        description: "Veuillez corriger les erreurs dans le formulaire.",
         variant: "destructive"
       });
       return;
     }
 
-    const whatsappMessage = `Bonjour ! Je suis ${formData.name}.\n\nMon numéro : ${formData.phone}\n\nMessage : ${formData.message}`;
+    // Clear errors
+    setErrors({});
+
+    // Sanitize and encode data for WhatsApp URL
+    const sanitizedName = result.data.name.replace(/[<>]/g, '');
+    const sanitizedPhone = result.data.phone.replace(/[<>]/g, '');
+    const sanitizedMessage = result.data.message.replace(/[<>]/g, '');
+
+    const whatsappMessage = `Bonjour ! Je suis ${sanitizedName}.\n\nMon numéro : ${sanitizedPhone}\n\nMessage : ${sanitizedMessage}`;
     const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessage)}`;
     
     window.open(whatsappUrl, '_blank');
@@ -54,6 +94,10 @@ const Contact = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (errors[name as keyof ContactFormData]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   const quickMessages = [
@@ -201,7 +245,7 @@ const Contact = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="space-y-2">
                   <Label htmlFor="name">Nom complet *</Label>
                   <Input
@@ -212,7 +256,17 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    minLength={2}
+                    maxLength={100}
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                    className={errors.name ? "border-destructive" : ""}
                   />
+                  {errors.name && (
+                    <p id="name-error" className="text-sm text-destructive">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -225,7 +279,18 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
+                    minLength={8}
+                    maxLength={20}
+                    pattern="[+]?[0-9\s-]{8,20}"
+                    aria-invalid={!!errors.phone}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
+                    className={errors.phone ? "border-destructive" : ""}
                   />
+                  {errors.phone && (
+                    <p id="phone-error" className="text-sm text-destructive">
+                      {errors.phone}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -233,12 +298,22 @@ const Contact = () => {
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Décrivez vos besoins..."
+                    placeholder="Décrivez vos besoins (10 caractères minimum)..."
                     rows={4}
                     value={formData.message}
                     onChange={handleInputChange}
                     required
+                    minLength={10}
+                    maxLength={1000}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
+                    className={errors.message ? "border-destructive" : ""}
                   />
+                  {errors.message && (
+                    <p id="message-error" className="text-sm text-destructive">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <Button 
