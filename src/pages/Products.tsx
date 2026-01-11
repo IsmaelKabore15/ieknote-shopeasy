@@ -1,153 +1,35 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductCard from "@/components/ui/product-card";
 import WhatsAppButton, { whatsappMessages } from "@/components/ui/whatsapp-button";
-import { Search, Filter, GraduationCap, BookOpen, Pen } from "lucide-react";
+import { Search, Filter, GraduationCap, BookOpen, Pen, ShoppingCart } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import schoolKits from "@/assets/school-kits.jpg";
-import schoolSupplies from "@/assets/school-supplies.jpg";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import { products, getProductsByCategory } from "@/data/products";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const { totalItems } = useCart();
 
-  const handleOrder = (product: string) => {
-    const message = `Bonjour, je souhaite commander : ${product}. Pouvez-vous me donner plus d'informations ?`;
-    window.open(`https://wa.me/2250757608818?text=${encodeURIComponent(message)}`, '_blank');
-  };
-
-  const kits = [
-    {
-      title: "Kit Scolaire 6ème/5ème",
-      price: "8 100 FCFA",
-      originalPrice: "9 500 FCFA",
-      description: "Cahiers 200p (6 unités), stylos Bic bleu/noir (4 unités), crayons HB (3 unités), gommes (2 unités), règles 30cm, ensemble géométrique complet, couvertures plastiques",
-      image: schoolKits,
-      badge: "Populaire",
-      onOrder: () => {
-        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit6e5e)}`;
-        window.open(whatsappUrl, "_blank");
-      }
-    },
-    {
-      title: "Kit Scolaire 3ème/4ème", 
-      price: "10 000 FCFA",
-      originalPrice: "11 800 FCFA",
-      description: "Cahiers 300p (8 unités), fournitures complètes, calculatrice standard, compas de qualité, équerres 45° et 30°, stylos de couleur, surligneurs",
-      image: schoolKits,
-      badge: "Recommandé",
-      onOrder: () => {
-        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit3e4e)}`;
-        window.open(whatsappUrl, "_blank");
-      }
-    },
-    {
-      title: "Kit Scolaire 2nde/Tle",
-      price: "13 000 FCFA", 
-      originalPrice: "15 200 FCFA",
-      description: "Cahiers de recherche (4 unités), cahiers TP sciences (6 unités), fournitures premium, calculatrice scientifique, matériel de dessin technique complet",
-      image: schoolKits,
-      badge: "Complet",
-      onOrder: () => {
-        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit2ndeTle)}`;
-        window.open(whatsappUrl, "_blank");
-      }
-    }
-  ];
-
-  const cahiers = [
-    {
-      title: "Cahier 200 pages",
-      price: "750 FCFA",
-      description: "Cahier grand format, papier de qualité, reliure solide. Idéal pour les cours quotidiens.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Cahier 200 pages")
-    },
-    {
-      title: "Cahier 300 pages",
-      price: "950 FCFA",
-      description: "Cahier extra-large, parfait pour les matières principales et les cours intensifs.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Cahier 300 pages")
-    },
-    {
-      title: "Cahier TP",
-      price: "850 FCFA",
-      description: "Cahier spécialisé pour travaux pratiques en sciences, avec pages quadrillées.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Cahier TP")
-    },
-    {
-      title: "Cahier Étudiant",
-      price: "1 200 FCFA",
-      description: "Cahier premium pour étudiants, format A4, spirales métalliques.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Cahier Étudiant")
-    },
-    {
-      title: "Cahier de Recherche",
-      price: "1 500 FCFA",
-      description: "Cahier spécialisé pour travaux de recherche, papier épais, format universitaire.",
-      image: schoolSupplies,
-      badge: "Premium",
-      onOrder: () => handleOrder("Cahier de Recherche")
-    }
-  ];
-
-  const fournitures = [
-    {
-      title: "Pack Stylos Bic (10 unités)",
-      price: "2 500 FCFA",
-      description: "Stylos Bic bleu et noir, encre de qualité supérieure, écriture fluide.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Pack Stylos Bic (10 unités)")
-    },
-    {
-      title: "Set de Crayons HB (12 unités)",
-      price: "1 800 FCFA",
-      description: "Crayons à papier de qualité, mine HB, parfaits pour les croquis et l'écriture.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Set de Crayons HB (12 unités)")
-    },
-    {
-      title: "Ensemble Géométrique Complet",
-      price: "3 500 FCFA",
-      description: "Compas, équerres 45° et 30°, règle graduée, rapporteur. Kit professionnel.",
-      image: schoolSupplies,
-      badge: "Qualité Pro",
-      onOrder: () => handleOrder("Ensemble Géométrique Complet")
-    },
-    {
-      title: "Pack Gommes et Correcteurs",
-      price: "1 200 FCFA",
-      description: "Gommes blanches, correcteurs liquides et en stylo. Parfait pour les corrections.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Pack Gommes et Correcteurs")
-    },
-    {
-      title: "Couvertures Plastiques (20 unités)",
-      price: "2 000 FCFA",
-      description: "Protection pour cahiers et livres, transparentes et résistantes.",
-      image: schoolSupplies,
-      onOrder: () => handleOrder("Couvertures Plastiques (20 unités)")
-    },
-    {
-      title: "Calculatrice Scientifique",
-      price: "8 500 FCFA",
-      description: "Calculatrice avancée pour lycéens, fonctions scientifiques complètes.",
-      image: schoolSupplies,
-      badge: "Lycée",
-      onOrder: () => handleOrder("Calculatrice Scientifique")
-    }
-  ];
+  const kits = getProductsByCategory("kits");
+  const cahiers = getProductsByCategory("cahiers");
+  const fournitures = getProductsByCategory("fournitures");
 
   const categories = [
     { id: "kits", label: "Kits Scolaires", icon: GraduationCap, products: kits },
     { id: "cahiers", label: "Cahiers", icon: BookOpen, products: cahiers },
     { id: "fournitures", label: "Fournitures", icon: Pen, products: fournitures }
   ];
+
+  const filterProducts = (productList: typeof products) => {
+    return productList.filter(product => 
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -182,9 +64,19 @@ const Products = () => {
                 className="pl-10"
               />
             </div>
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-              <Filter className="h-4 w-4" />
-              <span>{kits.length + cahiers.length + fournitures.length} produits disponibles</span>
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <Filter className="h-4 w-4" />
+                <span>{products.length} produits disponibles</span>
+              </div>
+              {totalItems > 0 && (
+                <Button asChild size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  <Link to="/panier">
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Panier ({totalItems})
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -219,16 +111,27 @@ const Products = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {category.products
-                    .filter(product => 
-                      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                      product.description.toLowerCase().includes(searchTerm.toLowerCase())
-                    )
-                    .map((product, index) => (
-                      <ProductCard key={index} {...product} />
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filterProducts(category.products).map((product) => (
+                    <ProductCard 
+                      key={product.id}
+                      id={product.id}
+                      title={product.title}
+                      price={product.priceDisplay}
+                      priceNumeric={product.price}
+                      originalPrice={product.originalPrice}
+                      description={product.description}
+                      image={product.image}
+                      badge={product.badge}
+                    />
+                  ))}
                 </div>
+
+                {filterProducts(category.products).length === 0 && (
+                  <div className="text-center py-12">
+                    <p className="text-muted-foreground">Aucun produit trouvé pour "{searchTerm}"</p>
+                  </div>
+                )}
               </TabsContent>
             ))}
           </Tabs>
@@ -238,24 +141,25 @@ const Products = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-primary to-secondary text-white">
         <div className="container mx-auto px-4">
-          <div className="text-center bg-gradient-to-r from-school-orange to-school-yellow p-8 rounded-lg text-white">
+          <div className="text-center bg-gradient-to-r from-primary/80 to-secondary/80 p-8 rounded-lg">
             <h3 className="text-2xl font-bold mb-4">Besoin d'aide pour choisir ?</h3>
             <p className="text-lg mb-6 opacity-90">Notre équipe est là pour vous conseiller !</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <WhatsAppButton 
                 variant="default"
                 message={whatsappMessages.general}
-                className="bg-white text-school-blue hover:bg-gray-100"
+                className="bg-white text-primary hover:bg-gray-100"
               >
                 💬 Discuter avec nous
               </WhatsAppButton>
-              <WhatsAppButton 
-                variant="default"
-                message={whatsappMessages.fournitures}
-                className="bg-white/20 text-white hover:bg-white/30 border border-white/20"
-              >
-                📦 Fournitures à l'unité
-              </WhatsAppButton>
+              {totalItems > 0 && (
+                <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  <Link to="/panier">
+                    <ShoppingCart className="mr-2 h-4 w-4" />
+                    Voir mon panier ({totalItems})
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
         </div>
