@@ -1,23 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart, Star, Check } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 interface ProductCardProps {
+  id?: string;
   title: string;
   price: string;
+  priceNumeric?: number;
   originalPrice?: string;
   description: string;
   image: string;
   badge?: string;
   rating?: number;
-  onOrder: () => void;
+  onOrder?: () => void;
   className?: string;
 }
 
 const ProductCard = ({
+  id,
   title,
   price,
+  priceNumeric,
   originalPrice,
   description,
   image,
@@ -26,6 +33,35 @@ const ProductCard = ({
   onOrder,
   className = ""
 }: ProductCardProps) => {
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+  const [isAdded, setIsAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    if (!id || !priceNumeric) {
+      // Fallback vers WhatsApp si pas d'ID ou de prix numérique
+      if (onOrder) {
+        onOrder();
+      }
+      return;
+    }
+
+    addToCart({
+      id,
+      title,
+      price: priceNumeric,
+      image
+    });
+
+    setIsAdded(true);
+    toast({
+      title: "Ajouté au panier !",
+      description: `${title} a été ajouté à votre panier.`,
+    });
+
+    setTimeout(() => setIsAdded(false), 2000);
+  };
+
   return (
     <Card className={`group hover:shadow-card transition-all duration-300 hover:-translate-y-1 ${className}`}>
       <CardHeader className="relative p-0">
@@ -34,6 +70,7 @@ const ProductCard = ({
             src={image} 
             alt={title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
           />
         </div>
         {badge && (
@@ -73,12 +110,25 @@ const ProductCard = ({
       
       <CardFooter className="p-4 pt-0">
         <Button 
-          onClick={onOrder}
-          className="w-full bg-success hover:bg-success/90 text-success-foreground"
+          onClick={handleAddToCart}
+          className={`w-full transition-all duration-300 ${
+            isAdded 
+              ? "bg-success hover:bg-success/90" 
+              : "bg-primary hover:bg-primary/90"
+          } text-primary-foreground`}
           size="sm"
         >
-          <ShoppingCart className="h-4 w-4 mr-2" />
-          Commander
+          {isAdded ? (
+            <>
+              <Check className="h-4 w-4 mr-2" />
+              Ajouté !
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="h-4 w-4 mr-2" />
+              Ajouter au panier
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>
