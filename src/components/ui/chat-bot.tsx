@@ -259,23 +259,28 @@ Voici les sujets sur lesquels je peux vous renseigner :
 
       {/* Chat Interface */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 z-50 w-96 h-[500px] shadow-2xl border-school-primary/20">
-          <CardHeader className="bg-gradient-to-r from-school-primary to-school-secondary text-white p-4">
+        <Card className="fixed bottom-6 right-6 z-50 w-96 h-[500px] shadow-2xl border-violet-200">
+          <CardHeader className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white p-4 rounded-t-lg">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Bot className="h-5 w-5" />
-                <CardTitle className="text-lg">Assistant I.E.K</CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <Bot className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg font-bold">Assistant I.E.K</CardTitle>
+                  <p className="text-xs text-white/80">En ligne • Répond instantanément</p>
+                </div>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleClose}
-                className="text-white hover:bg-white/20 h-8 w-8"
+                className="text-white hover:bg-white/30 h-10 w-10 rounded-full bg-white/10 border border-white/20"
+                aria-label="Fermer le chat"
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               </Button>
             </div>
-            <p className="text-sm text-white/90">Votre assistant fournitures scolaires</p>
           </CardHeader>
           
           <CardContent className="p-0 flex flex-col h-[380px]">
