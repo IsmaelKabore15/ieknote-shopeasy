@@ -164,6 +164,14 @@ const ProductCard = ({
           )}
         </div>
 
+        {freeDelivery && (
+          <div className="flex items-center gap-2 rounded-xl bg-success/10 border border-success/30 px-3 py-2">
+            <Truck className="h-4 w-4 text-success" />
+            <span className="text-sm font-bold text-success uppercase tracking-wide">Livraison gratuite</span>
+          </div>
+        )}
+
+
         {/* Mobile Add Button */}
         <Button 
           onClick={handleAddToCart}
