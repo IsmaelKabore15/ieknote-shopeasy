@@ -276,28 +276,37 @@ const Home = () => {
               Nos Kits Bestsellers
             </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground">
-              Kits Scolaires{" "}
-              <span className="text-gradient-gold">Complets</span>
+              Nos Kits{" "}
+              <span className="text-gradient-gold">Scolaires</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Des kits adaptés à chaque niveau. Tout ce qu'il faut pour une année réussie, à prix réduit !
+              Composés de cahiers <span className="font-semibold text-foreground">Privilège</span> et{" "}
+              <span className="font-semibold text-foreground">Original</span>, avec le cahier EPS 100p inclus dans chaque kit.
             </p>
+            <div className="flex justify-center pt-2">
+              <div className="inline-flex items-center gap-3 rounded-2xl bg-success px-6 py-4 shadow-strong animate-pulse">
+                <Truck className="h-7 w-7 text-success-foreground" />
+                <span className="text-lg md:text-2xl font-heading font-bold text-success-foreground uppercase tracking-wide">
+                  Livraison 100% gratuite
+                </span>
+              </div>
+            </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {kits.map((kit, index) => (
               <div 
                 key={index} 
                 className="group relative bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-strong transition-all duration-500 hover:-translate-y-2"
               >
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-56 overflow-hidden bg-white">
                   <img 
                     src={kit.image} 
-                    alt={kit.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    alt={`${kit.title} — cahiers Privilège et Original`}
+                    className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${kit.color} opacity-60`} />
                   <Badge className="absolute top-4 left-4 badge-premium">
                     {kit.badge}
                   </Badge>
@@ -305,17 +314,28 @@ const Home = () => {
                   <div className="absolute top-4 right-4 bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-sm font-bold">
                     -{Math.round((1 - parseInt(kit.price.replace(/\D/g, '')) / parseInt(kit.originalPrice.replace(/\D/g, ''))) * 100)}%
                   </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-success py-2 text-center">
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-success-foreground uppercase tracking-wide">
+                      <Truck className="h-4 w-4" />
+                      Livraison gratuite
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-heading font-bold text-foreground">{kit.title}</h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2">{kit.description}</p>
+                  <p className="text-muted-foreground text-sm line-clamp-3">{kit.description}</p>
+                  <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                    <CheckCircle className="h-4 w-4 text-success" />
+                    Cahier EPS 100p inclus
+                  </div>
                   
                   <div className="flex items-baseline gap-3">
                     <span className="text-2xl font-bold text-gradient">{kit.price}</span>
                     <span className="text-muted-foreground line-through text-sm">{kit.originalPrice}</span>
                   </div>
+
 
                   <Button 
                     onClick={kit.onOrder}
