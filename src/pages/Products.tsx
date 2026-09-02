@@ -123,6 +123,7 @@ const Products = () => {
                       description={product.description}
                       image={product.image}
                       badge={product.badge}
+                      freeDelivery={product.freeDelivery}
                     />
                   ))}
                 </div>

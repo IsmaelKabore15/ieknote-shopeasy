@@ -101,9 +101,10 @@ export const PhoneButton = ({
 // Messages prédéfinis pour différentes situations
 export const whatsappMessages = {
   general: "Bonjour ! Je viens du site Librairie I.E.K et j'aimerais avoir des informations sur vos kits scolaires.",
-  kit6e5e: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le kit scolaire 6e/5e à 8100F. Pouvez-vous me donner plus de détails ?",
-  kit3e4e: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le kit scolaire 3e/4e à 10000F. Pouvez-vous me donner plus de détails ?",
-  kit2ndeTle: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le kit scolaire 2nde/Tle à 13000F. Pouvez-vous me donner plus de détails ?",
+  kit6e5e: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le Kit Scolaire 6e/5e à 9 000 FCFA (cahiers Privilège & Original + cahier EPS 100p, livraison gratuite). Pouvez-vous me donner plus de détails ?",
+  kit4e: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le Kit Scolaire 4e à 10 500 FCFA (cahiers Privilège & Original + cahier EPS 100p, livraison gratuite). Pouvez-vous me donner plus de détails ?",
+  kit3e: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le Kit Scolaire 3e à 12 000 FCFA (cahiers Privilège & Original + cahier EPS 100p, livraison gratuite). Pouvez-vous me donner plus de détails ?",
+  kitLycee: "Bonjour ! Je viens du site Librairie I.E.K et je suis intéressé(e) par le Kit Scolaire Lycée (2nde/1ère/Tle) à 13 000 FCFA (cahiers Privilège & Original + cahier EPS 100p, livraison gratuite). Pouvez-vous me donner plus de détails ?",
   fournitures: "Bonjour ! Je viens du site Librairie I.E.K et j'aimerais acheter des fournitures scolaires à l'unité. Que proposez-vous ?",
   livraison: "Bonjour ! Je viens du site Librairie I.E.K et j'aimerais savoir comment fonctionne votre service de livraison.",
   prix: "Bonjour ! Je viens du site Librairie I.E.K et j'aimerais avoir plus d'informations sur vos prix.",

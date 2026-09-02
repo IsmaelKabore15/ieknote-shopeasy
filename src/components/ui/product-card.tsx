@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Check, Sparkles } from "lucide-react";
+import { ShoppingCart, Star, Check, Sparkles, Truck } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -15,9 +15,11 @@ interface ProductCardProps {
   image: string;
   badge?: string;
   rating?: number;
+  freeDelivery?: boolean;
   onOrder?: () => void;
   className?: string;
 }
+
 
 const ProductCard = ({
   id,
@@ -29,9 +31,11 @@ const ProductCard = ({
   image,
   badge,
   rating = 5,
+  freeDelivery = false,
   onOrder,
   className = ""
 }: ProductCardProps) => {
+
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [isAdded, setIsAdded] = useState(false);
@@ -85,7 +89,14 @@ const ProductCard = ({
               {badge}
             </Badge>
           )}
+          {freeDelivery && (
+            <Badge className="bg-success text-success-foreground text-xs font-bold shadow-lg animate-pulse">
+              <Truck className="h-3 w-3 mr-1" />
+              LIVRAISON GRATUITE
+            </Badge>
+          )}
         </div>
+
         
         {/* Discount Badge */}
         {discount > 0 && (
@@ -152,6 +163,14 @@ const ProductCard = ({
             </span>
           )}
         </div>
+
+        {freeDelivery && (
+          <div className="flex items-center gap-2 rounded-xl bg-success/10 border border-success/30 px-3 py-2">
+            <Truck className="h-4 w-4 text-success" />
+            <span className="text-sm font-bold text-success uppercase tracking-wide">Livraison gratuite</span>
+          </div>
+        )}
+
 
         {/* Mobile Add Button */}
         <Button 

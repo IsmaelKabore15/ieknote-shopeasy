@@ -5,50 +5,59 @@ import ChatBot from "@/components/ui/chat-bot";
 import { ArrowRight, CheckCircle, Star, Users, Package, Clock, Sparkles, ShoppingBag, Truck, Shield, Award, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-school-supplies.jpg";
-import schoolKits from "@/assets/school-kits.jpg";
+import kit6e5eImg from "@/assets/kits/cahier-200p.jpg";
+import kit4eImg from "@/assets/kits/cahier-300p.jpg";
+import kit3eImg from "@/assets/kits/lot-cahiers.jpg";
+import kitLyceeImg from "@/assets/kits/cahier-etudiant.jpg";
+
+const orderKit = (message: string) => () => {
+  window.open(`https://wa.me/2250757608818?text=${encodeURIComponent(message)}`, "_blank");
+};
 
 const Home = () => {
   const kits = [
     {
       title: "Kit Scolaire 6ème/5ème",
-      price: "8 100 FCFA",
-      originalPrice: "9 500 FCFA",
-      description: "Cahiers 200p, stylos Bic, crayons, gommes, règles, ensemble géométrique, couvertures plastiques",
-      image: schoolKits,
+      price: "9 000 FCFA",
+      originalPrice: "10 500 FCFA",
+      description: "Cahiers Privilège & Original 200p, cahier EPS 100p, stylos Bic, crayons, gommes, règle 30cm, ensemble géométrique, couvertures plastiques",
+      image: kit6e5eImg,
       badge: "Populaire",
       color: "from-blue-500 to-indigo-600",
-      onOrder: () => {
-        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit6e5e)}`;
-        window.open(whatsappUrl, "_blank");
-      }
+      onOrder: orderKit(whatsappMessages.kit6e5e)
     },
     {
-      title: "Kit Scolaire 3ème/4ème", 
-      price: "10 000 FCFA",
-      originalPrice: "11 800 FCFA",
-      description: "Cahiers 300p, fournitures complètes, calculatrice, compas, équerres, stylos de qualité",
-      image: schoolKits,
+      title: "Kit Scolaire 4ème",
+      price: "10 500 FCFA",
+      originalPrice: "12 000 FCFA",
+      description: "Cahiers Privilège & Original 300p, cahier EPS 100p, cahier TP, stylos Bic, compas, équerres 45° et 30°, surligneurs, couvertures plastiques",
+      image: kit4eImg,
       badge: "Recommandé",
-      color: "from-purple-500 to-pink-600",
-      onOrder: () => {
-        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit3e4e)}`;
-        window.open(whatsappUrl, "_blank");
-      }
+      color: "from-emerald-500 to-teal-600",
+      onOrder: orderKit(whatsappMessages.kit4e)
     },
     {
-      title: "Kit Scolaire 2nde/Tle",
-      price: "13 000 FCFA", 
+      title: "Kit Scolaire 3ème",
+      price: "12 000 FCFA",
+      originalPrice: "13 800 FCFA",
+      description: "Cahiers Privilège & Original 300p, cahier EPS 100p, cahiers TP sciences, calculatrice, ensemble géométrique complet — spécial préparation BEPC",
+      image: kit3eImg,
+      badge: "Spécial BEPC",
+      color: "from-purple-500 to-pink-600",
+      onOrder: orderKit(whatsappMessages.kit3e)
+    },
+    {
+      title: "Kit Lycée (2nde/1ère/Tle)",
+      price: "13 000 FCFA",
       originalPrice: "15 200 FCFA",
-      description: "Cahiers de recherche, cahiers TP, fournitures premium, calculatrice scientifique",
-      image: schoolKits,
+      description: "Cahiers Privilège & Original 300p, cahiers de recherche, cahiers TP sciences, cahier EPS 100p, calculatrice scientifique, dessin technique",
+      image: kitLyceeImg,
       badge: "Complet",
       color: "from-amber-500 to-orange-600",
-      onOrder: () => {
-        const whatsappUrl = `https://wa.me/2250757608818?text=${encodeURIComponent(whatsappMessages.kit2ndeTle)}`;
-        window.open(whatsappUrl, "_blank");
-      }
+      onOrder: orderKit(whatsappMessages.kitLycee)
     }
   ];
+
 
   const features = [
     {
@@ -267,28 +276,37 @@ const Home = () => {
               Nos Kits Bestsellers
             </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground">
-              Kits Scolaires{" "}
-              <span className="text-gradient-gold">Complets</span>
+              Nos Kits{" "}
+              <span className="text-gradient-gold">Scolaires</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Des kits adaptés à chaque niveau. Tout ce qu'il faut pour une année réussie, à prix réduit !
+              Composés de cahiers <span className="font-semibold text-foreground">Privilège</span> et{" "}
+              <span className="font-semibold text-foreground">Original</span>, avec le cahier EPS 100p inclus dans chaque kit.
             </p>
+            <div className="flex justify-center pt-2">
+              <div className="inline-flex items-center gap-3 rounded-2xl bg-success px-6 py-4 shadow-strong animate-pulse">
+                <Truck className="h-7 w-7 text-success-foreground" />
+                <span className="text-lg md:text-2xl font-heading font-bold text-success-foreground uppercase tracking-wide">
+                  Livraison 100% gratuite
+                </span>
+              </div>
+            </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {kits.map((kit, index) => (
               <div 
                 key={index} 
                 className="group relative bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-strong transition-all duration-500 hover:-translate-y-2"
               >
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-56 overflow-hidden bg-white">
                   <img 
                     src={kit.image} 
-                    alt={kit.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    alt={`${kit.title} — cahiers Privilège et Original`}
+                    className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${kit.color} opacity-60`} />
                   <Badge className="absolute top-4 left-4 badge-premium">
                     {kit.badge}
                   </Badge>
@@ -296,17 +314,28 @@ const Home = () => {
                   <div className="absolute top-4 right-4 bg-destructive text-destructive-foreground px-3 py-1 rounded-full text-sm font-bold">
                     -{Math.round((1 - parseInt(kit.price.replace(/\D/g, '')) / parseInt(kit.originalPrice.replace(/\D/g, ''))) * 100)}%
                   </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-success py-2 text-center">
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-success-foreground uppercase tracking-wide">
+                      <Truck className="h-4 w-4" />
+                      Livraison gratuite
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-heading font-bold text-foreground">{kit.title}</h3>
-                  <p className="text-muted-foreground text-sm line-clamp-2">{kit.description}</p>
+                  <p className="text-muted-foreground text-sm line-clamp-3">{kit.description}</p>
+                  <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                    <CheckCircle className="h-4 w-4 text-success" />
+                    Cahier EPS 100p inclus
+                  </div>
                   
                   <div className="flex items-baseline gap-3">
                     <span className="text-2xl font-bold text-gradient">{kit.price}</span>
                     <span className="text-muted-foreground line-through text-sm">{kit.originalPrice}</span>
                   </div>
+
 
                   <Button 
                     onClick={kit.onOrder}
