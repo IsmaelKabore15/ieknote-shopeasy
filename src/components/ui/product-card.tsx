@@ -89,7 +89,14 @@ const ProductCard = ({
               {badge}
             </Badge>
           )}
+          {freeDelivery && (
+            <Badge className="bg-success text-success-foreground text-xs font-bold shadow-lg animate-pulse">
+              <Truck className="h-3 w-3 mr-1" />
+              LIVRAISON GRATUITE
+            </Badge>
+          )}
         </div>
+
         
         {/* Discount Badge */}
         {discount > 0 && (
