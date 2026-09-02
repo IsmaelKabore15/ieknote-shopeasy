@@ -1,5 +1,9 @@
 import schoolSupplies from "@/assets/school-supplies.jpg";
 import schoolKits from "@/assets/school-kits.jpg";
+import kit6e5eImg from "@/assets/kits/cahier-200p.jpg";
+import kit4eImg from "@/assets/kits/cahier-300p.jpg";
+import kit3eImg from "@/assets/kits/lot-cahiers.jpg";
+import kitLyceeImg from "@/assets/kits/cahier-etudiant.jpg";
 
 export interface Product {
   id: string;
@@ -11,6 +15,7 @@ export interface Product {
   image: string;
   category: "kits" | "cahiers" | "fournitures";
   badge?: string;
+  freeDelivery?: boolean;
 }
 
 export const products: Product[] = [
@@ -18,36 +23,52 @@ export const products: Product[] = [
   {
     id: "kit-6e-5e",
     title: "Kit Scolaire 6ème/5ème",
-    price: 8100,
-    priceDisplay: "8 100 FCFA",
-    originalPrice: "9 500 FCFA",
-    description: "Cahiers 200p (6 unités), stylos Bic bleu/noir (4 unités), crayons HB (3 unités), gommes (2 unités), règles 30cm, ensemble géométrique complet, couvertures plastiques",
-    image: schoolKits,
+    price: 9000,
+    priceDisplay: "9 000 FCFA",
+    originalPrice: "10 500 FCFA",
+    description: "Cahiers Privilège & Original 200p (6 unités), cahier EPS 100p, stylos Bic bleu/rouge/noir, crayons HB, gommes, règle 30cm, ensemble géométrique, couvertures plastiques",
+    image: kit6e5eImg,
     category: "kits",
-    badge: "Populaire"
+    badge: "Populaire",
+    freeDelivery: true
   },
   {
-    id: "kit-3e-4e",
-    title: "Kit Scolaire 3ème/4ème",
-    price: 10000,
-    priceDisplay: "10 000 FCFA",
-    originalPrice: "11 800 FCFA",
-    description: "Cahiers 300p (8 unités), fournitures complètes, calculatrice standard, compas de qualité, équerres 45° et 30°, stylos de couleur, surligneurs",
-    image: schoolKits,
+    id: "kit-4e",
+    title: "Kit Scolaire 4ème",
+    price: 10500,
+    priceDisplay: "10 500 FCFA",
+    originalPrice: "12 000 FCFA",
+    description: "Cahiers Privilège & Original 300p (6 unités), cahier EPS 100p, cahier TP, stylos Bic, crayons, compas, équerres 45° et 30°, surligneurs, couvertures plastiques",
+    image: kit4eImg,
     category: "kits",
-    badge: "Recommandé"
+    badge: "Recommandé",
+    freeDelivery: true
   },
   {
-    id: "kit-2nde-tle",
-    title: "Kit Scolaire 2nde/Tle",
+    id: "kit-3e",
+    title: "Kit Scolaire 3ème",
+    price: 12000,
+    priceDisplay: "12 000 FCFA",
+    originalPrice: "13 800 FCFA",
+    description: "Cahiers Privilège & Original 300p (8 unités), cahier EPS 100p, cahiers TP sciences, calculatrice, ensemble géométrique complet, stylos et surligneurs — spécial préparation BEPC",
+    image: kit3eImg,
+    category: "kits",
+    badge: "Spécial BEPC",
+    freeDelivery: true
+  },
+  {
+    id: "kit-lycee",
+    title: "Kit Scolaire Lycée (2nde/1ère/Tle)",
     price: 13000,
     priceDisplay: "13 000 FCFA",
     originalPrice: "15 200 FCFA",
-    description: "Cahiers de recherche (4 unités), cahiers TP sciences (6 unités), fournitures premium, calculatrice scientifique, matériel de dessin technique complet",
-    image: schoolKits,
+    description: "Cahiers Privilège & Original 300p, cahiers de recherche, cahiers TP sciences, cahier EPS 100p, calculatrice scientifique, matériel de dessin technique complet",
+    image: kitLyceeImg,
     category: "kits",
-    badge: "Complet"
+    badge: "Complet",
+    freeDelivery: true
   },
+
 
   // CAHIERS
   {
