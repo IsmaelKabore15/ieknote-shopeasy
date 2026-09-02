@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Check, Sparkles } from "lucide-react";
+import { ShoppingCart, Star, Check, Sparkles, Truck } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -15,9 +15,11 @@ interface ProductCardProps {
   image: string;
   badge?: string;
   rating?: number;
+  freeDelivery?: boolean;
   onOrder?: () => void;
   className?: string;
 }
+
 
 const ProductCard = ({
   id,
@@ -29,9 +31,11 @@ const ProductCard = ({
   image,
   badge,
   rating = 5,
+  freeDelivery = false,
   onOrder,
   className = ""
 }: ProductCardProps) => {
+
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [isAdded, setIsAdded] = useState(false);
