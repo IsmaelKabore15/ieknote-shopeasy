@@ -4,6 +4,14 @@ import kit6e5eImg from "@/assets/kits/cahier-200p.jpg";
 import kit4eImg from "@/assets/kits/cahier-300p.jpg";
 import kit3eImg from "@/assets/kits/lot-cahiers.jpg";
 import kitLyceeImg from "@/assets/kits/cahier-etudiant.jpg";
+import cahier100 from "@/assets/kits/cahier-100p.jpg";
+import cahier200 from "@/assets/kits/cahier-200p.jpg";
+import cahier300 from "@/assets/kits/cahier-300p.jpg";
+import cahierTP from "@/assets/kits/cahier-tp.jpg";
+import cahierRecherche from "@/assets/kits/cahier-recherche.jpg";
+import cahierGrandFormat from "@/assets/kits/cahier-grand-format.jpg";
+import bicsImg from "@/assets/kits/bics.jpg";
+import geoImg from "@/assets/kits/ensemble-geo.jpg";
 
 export interface Product {
   id: string;
@@ -77,7 +85,7 @@ export const products: Product[] = [
     price: 500,
     priceDisplay: "500 FCFA",
     description: "Cahier petit format, parfait pour les exercices quotidiens et les brouillons.",
-    image: schoolSupplies,
+    image: cahier100,
     category: "cahiers"
   },
   {
@@ -86,7 +94,7 @@ export const products: Product[] = [
     price: 900,
     priceDisplay: "900 FCFA",
     description: "Cahier grand format, papier de qualité, reliure solide. Idéal pour les cours quotidiens.",
-    image: schoolSupplies,
+    image: cahier200,
     category: "cahiers"
   },
   {
@@ -95,7 +103,7 @@ export const products: Product[] = [
     price: 1800,
     priceDisplay: "1 800 FCFA",
     description: "Cahier extra-large, parfait pour les matières principales et les cours intensifs.",
-    image: schoolSupplies,
+    image: cahier300,
     category: "cahiers"
   },
   {
@@ -104,7 +112,7 @@ export const products: Product[] = [
     price: 850,
     priceDisplay: "850 FCFA",
     description: "Cahier spécialisé pour travaux pratiques en sciences, avec pages quadrillées.",
-    image: schoolSupplies,
+    image: cahierTP,
     category: "cahiers"
   },
   {
@@ -113,7 +121,7 @@ export const products: Product[] = [
     price: 1200,
     priceDisplay: "1 200 FCFA",
     description: "Cahier à spirales métalliques, format A4, pratique pour les cours et révisions.",
-    image: schoolSupplies,
+    image: cahierGrandFormat,
     category: "cahiers"
   },
   {
@@ -122,7 +130,7 @@ export const products: Product[] = [
     price: 750,
     priceDisplay: "750 FCFA",
     description: "Cahier de dessin grand format, papier épais adapté aux crayons de couleur et feutres.",
-    image: schoolSupplies,
+    image: cahierRecherche,
     category: "cahiers"
   },
 
@@ -133,7 +141,7 @@ export const products: Product[] = [
     price: 100,
     priceDisplay: "100 FCFA",
     description: "Stylo bille Bic bleu, encre de qualité supérieure pour une écriture fluide.",
-    image: schoolSupplies,
+    image: bicsImg,
     category: "fournitures"
   },
   {
@@ -142,7 +150,7 @@ export const products: Product[] = [
     price: 100,
     priceDisplay: "100 FCFA",
     description: "Stylo bille Bic rouge, idéal pour les corrections et annotations.",
-    image: schoolSupplies,
+    image: bicsImg,
     category: "fournitures"
   },
   {
@@ -205,7 +213,7 @@ export const products: Product[] = [
     price: 700,
     priceDisplay: "700 FCFA",
     description: "Kit géométrique de base : règle, équerre, rapporteur.",
-    image: schoolSupplies,
+    image: geoImg,
     category: "fournitures"
   },
   {
@@ -214,7 +222,7 @@ export const products: Product[] = [
     price: 1000,
     priceDisplay: "1 000 FCFA",
     description: "Kit géométrique complet : règle, équerres 45° et 30°, rapporteur, compas.",
-    image: schoolSupplies,
+    image: geoImg,
     category: "fournitures",
     badge: "Complet"
   },
