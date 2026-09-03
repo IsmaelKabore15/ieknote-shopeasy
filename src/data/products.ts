@@ -24,6 +24,7 @@ export interface Product {
   category: "kits" | "cahiers" | "fournitures";
   badge?: string;
   freeDelivery?: boolean;
+  contents?: string[];
 }
 
 export const products: Product[] = [
@@ -38,7 +39,19 @@ export const products: Product[] = [
     image: kit6e5eImg,
     category: "kits",
     badge: "Populaire",
-    freeDelivery: true
+    freeDelivery: true,
+    contents: [
+      "6 cahiers Privilège 200p",
+      "4 cahiers Original 200p",
+      "1 cahier EPS 100p",
+      "3 stylos Bic (bleu, rouge, noir)",
+      "2 crayons HB + 1 taille-crayon",
+      "2 gommes blanches",
+      "1 règle 30 cm",
+      "1 ensemble géométrique petit",
+      "10 couvertures plastiques",
+      "1 ardoise + 2 craies"
+    ]
   },
   {
     id: "kit-4e",
@@ -50,7 +63,20 @@ export const products: Product[] = [
     image: kit4eImg,
     category: "kits",
     badge: "Recommandé",
-    freeDelivery: true
+    freeDelivery: true,
+    contents: [
+      "6 cahiers Privilège 300p",
+      "4 cahiers Original 300p",
+      "1 cahier EPS 100p",
+      "1 cahier TP",
+      "4 stylos Bic (bleu, rouge, noir, vert)",
+      "2 crayons HB + 1 taille-crayon",
+      "1 compas",
+      "1 équerre 45° + 1 équerre 30°",
+      "1 règle 30 cm",
+      "3 surligneurs",
+      "12 couvertures plastiques"
+    ]
   },
   {
     id: "kit-3e",
@@ -62,7 +88,19 @@ export const products: Product[] = [
     image: kit3eImg,
     category: "kits",
     badge: "Spécial BEPC",
-    freeDelivery: true
+    freeDelivery: true,
+    contents: [
+      "8 cahiers Privilège 300p",
+      "4 cahiers Original 300p",
+      "1 cahier EPS 100p",
+      "2 cahiers TP sciences (physique, SVT)",
+      "1 calculatrice scientifique",
+      "1 ensemble géométrique complet",
+      "4 stylos Bic + 3 surligneurs",
+      "2 crayons HB + gomme + taille-crayon",
+      "1 colle Bibeon + 1 scotch",
+      "14 couvertures plastiques"
+    ]
   },
   {
     id: "kit-lycee",
@@ -74,7 +112,20 @@ export const products: Product[] = [
     image: kitLyceeImg,
     category: "kits",
     badge: "Complet",
-    freeDelivery: true
+    freeDelivery: true,
+    contents: [
+      "10 cahiers Privilège 300p",
+      "4 cahiers Original 300p",
+      "2 cahiers de recherche",
+      "2 cahiers TP sciences",
+      "1 cahier EPS 100p",
+      "1 calculatrice scientifique",
+      "1 kit de dessin technique (équerres, rapporteur, compas)",
+      "1 règle 30 cm",
+      "5 stylos Bic + 3 surligneurs",
+      "2 crayons HB + gomme + taille-crayon",
+      "16 couvertures plastiques"
+    ]
   },
 
 

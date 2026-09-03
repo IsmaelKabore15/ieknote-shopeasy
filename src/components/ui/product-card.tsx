@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Star, Check, Sparkles, Truck } from "lucide-react";
+import { ShoppingCart, Star, Check, Sparkles, Truck, ChevronDown, Package } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
@@ -16,6 +16,7 @@ interface ProductCardProps {
   badge?: string;
   rating?: number;
   freeDelivery?: boolean;
+  contents?: string[];
   onOrder?: () => void;
   className?: string;
 }
@@ -32,6 +33,7 @@ const ProductCard = ({
   badge,
   rating = 5,
   freeDelivery = false,
+  contents,
   onOrder,
   className = ""
 }: ProductCardProps) => {
@@ -39,6 +41,7 @@ const ProductCard = ({
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [isAdded, setIsAdded] = useState(false);
+  const [showContents, setShowContents] = useState(false);
 
   const handleAddToCart = () => {
     if (!id || !priceNumeric) {
@@ -163,6 +166,33 @@ const ProductCard = ({
             </span>
           )}
         </div>
+
+        {contents && contents.length > 0 && (
+          <div className="rounded-xl border border-border bg-muted/40 overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setShowContents((v) => !v)}
+              aria-expanded={showContents}
+              className="w-full flex items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+            >
+              <span className="flex items-center gap-2">
+                <Package className="h-4 w-4 text-primary" />
+                Contenu du kit ({contents.length} articles)
+              </span>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-300 ${showContents ? "rotate-180" : ""}`} />
+            </button>
+            {showContents && (
+              <ul className="px-3 pb-3 pt-1 space-y-1.5 max-h-56 overflow-y-auto">
+                {contents.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <Check className="h-3.5 w-3.5 mt-0.5 text-success shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
 
         {freeDelivery && (
           <div className="flex items-center gap-2 rounded-xl bg-success/10 border border-success/30 px-3 py-2">
