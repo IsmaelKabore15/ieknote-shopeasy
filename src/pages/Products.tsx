@@ -124,6 +124,7 @@ const Products = () => {
                       image={product.image}
                       badge={product.badge}
                       freeDelivery={product.freeDelivery}
+                      contents={product.contents}
                     />
                   ))}
                 </div>
