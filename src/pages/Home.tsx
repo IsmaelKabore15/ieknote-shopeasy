@@ -5,6 +5,7 @@ import ChatBot from "@/components/ui/chat-bot";
 import { ArrowRight, CheckCircle, Star, Users, Package, Clock, Sparkles, ShoppingBag, Truck, Shield, Award, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-school-supplies.jpg";
+import { products as catalog } from "@/data/products";
 import kit6e5eImg from "@/assets/kits/cahier-200p.jpg";
 import kit4eImg from "@/assets/kits/cahier-300p.jpg";
 import kit3eImg from "@/assets/kits/lot-cahiers.jpg";
@@ -24,6 +25,7 @@ const Home = () => {
       image: kit6e5eImg,
       badge: "Populaire",
       color: "from-blue-500 to-indigo-600",
+      contents: catalog.find((p) => p.id === "kit-6e-5e")?.contents ?? [],
       onOrder: orderKit(whatsappMessages.kit6e5e)
     },
     {
@@ -34,6 +36,7 @@ const Home = () => {
       image: kit4eImg,
       badge: "Recommandé",
       color: "from-emerald-500 to-teal-600",
+      contents: catalog.find((p) => p.id === "kit-4e")?.contents ?? [],
       onOrder: orderKit(whatsappMessages.kit4e)
     },
     {
@@ -44,6 +47,7 @@ const Home = () => {
       image: kit3eImg,
       badge: "Spécial BEPC",
       color: "from-purple-500 to-pink-600",
+      contents: catalog.find((p) => p.id === "kit-3e")?.contents ?? [],
       onOrder: orderKit(whatsappMessages.kit3e)
     },
     {
@@ -54,6 +58,7 @@ const Home = () => {
       image: kitLyceeImg,
       badge: "Complet",
       color: "from-amber-500 to-orange-600",
+      contents: catalog.find((p) => p.id === "kit-lycee")?.contents ?? [],
       onOrder: orderKit(whatsappMessages.kitLycee)
     }
   ];
@@ -330,6 +335,26 @@ const Home = () => {
                     <CheckCircle className="h-4 w-4 text-success" />
                     Cahier EPS 100p inclus
                   </div>
+
+                  {kit.contents.length > 0 && (
+                    <details className="group/acc rounded-xl border border-border bg-muted/40 overflow-hidden">
+                      <summary className="flex items-center justify-between gap-2 px-3 py-2.5 text-sm font-semibold text-foreground cursor-pointer hover:bg-muted transition-colors list-none">
+                        <span className="flex items-center gap-2">
+                          <Package className="h-4 w-4 text-primary" />
+                          Voir les accessoires ({kit.contents.length})
+                        </span>
+                        <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 group-open/acc:rotate-90" />
+                      </summary>
+                      <ul className="px-3 pb-3 pt-1 space-y-1.5 max-h-56 overflow-y-auto">
+                        {kit.contents.map((item) => (
+                          <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <CheckCircle className="h-3.5 w-3.5 mt-0.5 text-success shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
                   
                   <div className="flex items-baseline gap-3">
                     <span className="text-2xl font-bold text-gradient">{kit.price}</span>
